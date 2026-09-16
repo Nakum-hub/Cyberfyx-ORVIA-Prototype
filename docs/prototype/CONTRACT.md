@@ -1,6 +1,6 @@
 # Shared prototype contract — design version 0.1.0
 
-**Status:** Ready design input; NOT yet generated, adopted or tested in a runtime repository.
+**Status:** Historical 0.1.0 design input. A00 now supplies executable proposal 0.2.0, reviewed at `e839b1a0e9358d389c5cb728648b1590f8f7ef9e`. Freeze is held for W00-F07; see [Work review](../reviews/work/W00_A00_REVIEW.md) and [producer proposal](../engineering/A00-CONTRACT-PROPOSAL.md). All business endpoints remain pending their implementation tickets. Codex alone changes schemas and regenerates the coordinated revision.
 **Schema writer:** Codex. **Semantic reviewer:** Work. **Consumer:** Claude Code.
 
 A00 turns the approved design into executable Zod schemas and generated OpenAPI/client types/examples in `packages/contracts/`. Do not independently implement incompatible interfaces in two lanes. The seed route index is not an implemented API or a full OpenAPI document.

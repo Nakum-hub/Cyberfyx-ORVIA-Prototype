@@ -1,0 +1,36 @@
+{
+  "kind": "WORK_DOCUMENT_AND_PUBLICATION_CHECK",
+  "source_commit": "e839b1a0e9358d389c5cb728648b1590f8f7ef9e",
+  "recorded_at": "2026-09-16T10:09:44.200382+00:00",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": [
+        "python",
+        "-"
+      ],
+      "result": "PASS",
+      "assertions": [
+        "All original task IDs, owners, priorities, titles, dependency edges, deliverables and test mappings preserved.",
+        "All original acceptance definitions and all 34 NOT_RUN statuses preserved.",
+        "Restored template matches supplied v1 SHA-256.",
+        "Every execution report log is tracked, including explicitly added Work logs otherwise matched by generic log ignore.",
+        "Staged paths are Work-owned documents, trackers, handoff/template and review artifacts.",
+        "git diff HEAD -- apps packages scripts infrastructure package.json pnpm-lock.yaml is empty."
+      ]
+    }
+  ],
+  "limitations": [
+    "Document/ownership checks only; no application test promoted.",
+    "Publication commit/tree identity is supplied by Git and the PR record."
+  ]
+}

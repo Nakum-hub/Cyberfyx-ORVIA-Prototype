@@ -1,36 +1,32 @@
 # ORVIA — current execution state
 
-**Writer:** Work · **Checkpoint:** W00/repo-r2 · **Date:** 2026-09-16 · **Integration observation:** owner merged PR #1 at 08:21:24 UTC; later metadata is a separate proposal
-
-This state describes the reviewed base and this proposed Work checkpoint. Branch/PR publication is not human integration approval. Other lanes submit exact commits and evidence through their own handoffs; Work alone consolidates this table.
+**Writer:** Work · **Checkpoint:** W00/A00-review-r3 · **Date:** 2026-09-16
 
 | Field | Current evidence / decision |
 |---|---|
-| Repository / inspected base | `Nakum-hub/Cyberfyx-ORVIA`; W00 source inspection at `96b8bd7590de0ca662d725b7fa0d708e811d6722` contained seven planning/instruction files, no application. Owner subsequently merged the nine-file Work checkpoint into `main` at `d2f49fe3ebde2e7e946239329fc14c802d10a3b3` |
-| Work branch / integration | `prototype/work/W00-bootstrap-review`; initial checkpoint `ebaea86cae793d04808a1fc983e1adc31b1bbe06`. [PR #1](https://github.com/Nakum-hub/Cyberfyx-ORVIA/pull/1) merged by `Nakum-hub` at `2026-09-16T08:21:24Z`. Later publication metadata requires separate human review |
-| Source | Product V1, master revision 1.3; reference SHA-256 `527daa1d6a2a7564a61d0375e540ca66b1bc8f33f4e71d327b0f6cb0bf6dbef6` verified; human-controlled repository copy absent |
-| Plan / contract | Plan 1.0 / design 0.1.0; executable schemas not created or accepted |
-| Profile | CUSTOMER_LOCAL_SYNTHETIC; marketing-withdrawal slice; custom AI DEFERRED_V2; no P1 promoted |
-| Owners | Work: decisions/reviews/trackers/views/state. Codex: schemas/dependencies/core/infra/tests/CI. Claude Code: UI/browser tests after A00 transfer. Cowork: UX/capability/demo/runbooks. Human: source originals/access/system approvals/merges/release |
-| Accepted tasks / commits | Work checkpoint integrated at `d2f49fe3ebde2e7e946239329fc14c802d10a3b3`; W00/A00 ticket acceptance remains pending. A00 inventory, runnable scaffold and handoff absent from the inspected source |
-| Executed results | Git inventory/access/source identity and document consistency only; exact commands/assertions in `docs/reviews/work/W00_EVIDENCE.json` |
-| Application results | T01–T34 all NOT_RUN: 30 P0 and 4 unpromoted P1; no runtime/build/browser/recovery/security/rehearsal results |
-| Open findings | F01 source/A00 evidence; F02 signed bindings; F03 reconciliation/receipt projection; F04 progress validator; F05 timing/runtime facts. F06 publication permission RESOLVED by verified branch/PR writes |
-| Access / merge controls | Public repository; GitHub content/branch/PR writes now succeed through the selected connection. Earlier HTTP 403 retained in evidence. Last inspected main protection/ruleset observations unchanged; human retains merge control |
-| R0 / deadline / target | Not supplied; original 36-hour budget not restarted. Does not block A00 inventory/bootstrap |
-| Readiness | Internal demo NOT_READY; production security/legal/supply-chain/recovery NOT_ASSESSED and separate |
-| Next dependency-ready tickets | Codex A00; Cowork C00 may proceed independently. B00/W01 wait for accepted A00 and applicable transfer |
-| Next merge | Human reviews the publication-evidence follow-up on the Work branch. Codex A00 is the next implementation ticket; Work reviews its actual proposal before human integration. Work performed no merge or release |
+| Inspected integration | main at e839b1a0e9358d389c5cb728648b1590f8f7ef9e; human merged A00 PR #3 at 09:42:57 UTC |
+| A00 submission / tree | Head 4e3494db5502af821c7706cd831ace38b02e82c4; implementation 605a73f4feaf245c2eabc82d6701ef13b6e1efe6; submission and merge tree identical: 1c09d4b6c48c51cb907797d692cd50ec61c50f7d |
+| Work proposal | prototype/work/W00-a00-review, based on inspected integration; publication commit identified by its Git/PR record. Work has not merged it |
+| Source | Product V1, master revision 1.3; reference SHA-256 527daa1d6a2a7564a61d0375e540ca66b1bc8f33f4e71d327b0f6cb0bf6dbef6 reverified; required human-controlled repository copy still absent |
+| Plan / contract | Plan 1.0; design 0.1.0; executable proposal 0.2.0 reviewed, freeze held for F07 correction |
+| Profile / scope | CUSTOMER_LOCAL_SYNTHETIC marketing withdrawal; existing stack retained; custom AI DEFERRED_V2; no P1 promoted |
+| Owners | Work: decisions/reviews/canonical trackers/views/state/common template. Codex: schemas/dependencies/core/infra/tests. Claude Code: UI/browser after accepted A00 transfer. Cowork: UX/capability/demo/runbooks. Human: source/access/system approvals/merges/release |
+| Accepted tasks | W00/A00 acceptance remains blocked. Merged code and reviewed evidence do not imply task acceptance. A01–A07/B00 are not accepted |
+| Work execution | Pinned frozen install, 8 existing unit tests, typecheck, lint, generated contracts/examples, trackers, hash/whitespace and narrow hygiene checks pass. F07 counterexample fails: provider assertion alone yields COMPLETED. CLI IPC failures and loader reruns retained |
+| Producer evidence | 51 recorded commands, including 14 nonzero runs; source hashes reviewed. Windows service/start/reset/HTTP evidence supports bootstrap subsets only. Work did not rerun Docker/PowerShell/services/browser here |
+| Full application results | T01–T34 all NOT_RUN: 30 P0 and 4 unpromoted P1. Partial bootstrap and pure-domain checks linked without promoting full-scenario results |
+| Blockers | F07 High: provider receipt satisfies independent-observation completion criterion (Codex). F01 remaining source gate: approved master absent under docs/source (human) |
+| Resolved / deferred | F02 bindings and F04 validator resolved at A00 depth; F03 representation supplied but F07 blocks completion semantics. F05 runtime supplied; R0/deadline unknown, nonblocking. F06 publication access resolved |
+| Isolation | Producer measured codex-a00; ui-b00/rehearsal unmeasured. Work used static/unit review with no services. Full reset, TLS and egress remain later gates |
+| Readiness | Shared-base CHANGES_REQUIRED; internal demo NOT_READY; production security/legal/release NOT_ASSESSED |
+| Next ready work | Codex A00 F07 correction; human source placement; Cowork C00 independent. A01/B00 start after accepted corrected A00; B00 acceptance also requires C00 |
+| Next merge | Human reviews this Work checkpoint, then corrected A00/source commits and relevant retests. Only human approves integration/release; Work re-reviews the exact correction |
 
-| Work ticket | Status | Start / acceptance dependency |
+| Work ticket | Status | Dependency / deliverable |
 |---|---|---|
-| W00 | BLOCKED; ADR and actual-base checkpoint delivered | Review arriving A00 proposal and close applicable findings; do not wait for A00 acceptance before reviewing it |
-| W01 | NOT_STARTED | Start A00; accept A01/A02 |
-| W02 | NOT_STARTED | Start W01/A03; accept A04/A05/A06/B04 |
-| W03 | NOT_STARTED | Start W02; accept A07/B06/C02, exact candidate and all required evidence |
+| W00 | BLOCKED for acceptance; concrete implementation review delivered | [A00 review](docs/reviews/work/W00_A00_REVIEW.md), ADR-001, evidence and [handoff](handoffs/work/W00-e839b1a.md); retest F07/source |
+| W01 | NOT_STARTED | Start accepted A00; accept A01/A02; authority/consent review |
+| W02 | NOT_STARTED | Start W01/A03; accept A04/A05/A06/B04; failure/security/recovery review |
+| W03 | NOT_STARTED | Start W02; accept A07/B06/C02; exact candidate, required evidence and two rehearsals |
 
-The human must place the already available approved original at `docs/source/ORVIA_Version_1_Unified_Master_with_Version_2_AI_Roadmap.md`. Codex supplies A00's exact commit, inventory, executable contracts/generated interfaces, dependency lockfile, isolated preflight/start/reset evidence and explicit UI layout/entry transfer. Work will review those actual artifacts and route bounded corrections to their owner.
-
-Canonical task/test definitions live in `tracking/tasks.json` and `tracking/acceptance.json`; generated views must match. Task `commit` remains null while no accepted task commit exists. This checkpoint does not populate W01–W03 reports or mark any prototype test passed. Failed runs and retests must be retained against their original code-under-test SHA; candidate-changing fixes require relevant reruns.
-
-See [W00 review](docs/reviews/work/W00_SCOPE_AND_CONTRACT.md), [ADR-001](docs/decisions/ADR-001-prototype-profile.md), [task board](docs/prototype/TASK_BOARD.md) and [handoff](handoffs/work/W00-96b8bd7.md).
+Work alone consolidates this table. Other lanes submit factual handoffs. Canonical definitions remain tracking/tasks.json and tracking/acceptance.json; generated views match. Accepted commit fields remain null until acceptance. Preserve failures/retests against their original source identity. Actual R0/deadline is still requested; the original 36-hour budget has not restarted.

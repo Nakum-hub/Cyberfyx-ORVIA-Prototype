@@ -1,0 +1,22 @@
+{
+  "kind": "WORK_REVIEW_SETUP",
+  "source_commit": "e839b1a0e9358d389c5cb728648b1590f8f7ef9e",
+  "contract_version": "0.2.0",
+  "command": [
+    "/workspace/scratch/6107f9291043/w00-a00-review-tools/node_modules/node/bin/node",
+    "/workspace/scratch/6107f9291043/w00-a00-review-tools/node_modules/pnpm/bin/pnpm.mjs",
+    "install",
+    "--frozen-lockfile"
+  ],
+  "cwd": "/workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review",
+  "started_at": "2026-09-16T09:54:53.166145+00:00",
+  "finished_at": "2026-09-16T09:56:33.801345+00:00",
+  "exit_code": 0,
+  "result": "PASS",
+  "artifact_paths": [
+    "docs/reviews/work/artifacts/W00-A00-e839b1a/frozen-install.log"
+  ],
+  "limitations": [
+    "No source/manifest edits; dependencies installed only for independent unit/contract review. No Docker/PowerShell available; no service test."
+  ]
+}

@@ -515,5 +515,35 @@
     "exit_code": 0,
     "result": "PASS",
     "limitations": "No application results; this is a separate follow-up after owner integration."
+  },
+  "a00_review_r3": {
+    "reviewed_commit": "e839b1a0e9358d389c5cb728648b1590f8f7ef9e",
+    "submission_head": "4e3494db5502af821c7706cd831ace38b02e82c4",
+    "contract_version": "0.2.0",
+    "review": "docs/reviews/work/W00_A00_REVIEW.md",
+    "source_audit": "docs/reviews/work/artifacts/W00-A00-e839b1a/source-and-evidence-audit.json",
+    "executed_checks": [
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/frozen-install.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/unit.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/unit-loader.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/contracts.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/contracts-loader.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/typecheck.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/lint.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/tracking-check.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/tracking-unit.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/F07-counterexample.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/source-whitespace.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/local-hygiene.json",
+      "docs/reviews/work/artifacts/W00-A00-e839b1a/tracking-final.json"
+    ],
+    "disposition": "CHANGES_REQUIRED",
+    "blocking_findings": [
+      "W00-F07",
+      "W00-F01 repository master placement"
+    ],
+    "application_acceptance_promoted": false,
+    "human_merge_observed": "PR #3 merged at 2026-09-16T09:42:57Z; Work did not merge",
+    "handoff": "handoffs/work/W00-e839b1a.md"
   }
 }

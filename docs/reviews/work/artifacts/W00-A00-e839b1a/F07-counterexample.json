@@ -1,0 +1,56 @@
+{
+  "kind": "WORK_REVIEW_CHECK",
+  "coverage": "ENGINEERING_ONLY",
+  "task_id": "W00",
+  "test_ids": [],
+  "source_commit": "e839b1a0e9358d389c5cb728648b1590f8f7ef9e",
+  "contract_version": "0.2.0",
+  "profile": "work-static-review-no-services",
+  "fixture_id": "repository-unit-and-review-fixtures",
+  "command": [
+    "/workspace/scratch/6107f9291043/w00-a00-review-tools/node_modules/node/bin/node",
+    "docs/reviews/work/repro/W00-F07-provider-receipt.mjs"
+  ],
+  "cwd": "/workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review",
+  "started_at": "2026-09-16T09:57:34.540697+00:00",
+  "finished_at": "2026-09-16T09:57:34.755089+00:00",
+  "exit_code": 1,
+  "result": "FAIL",
+  "runtime": {
+    "node": "24.21.0",
+    "pnpm": "12.4.2"
+  },
+  "artifact_paths": [
+    "docs/reviews/work/artifacts/W00-A00-e839b1a/F07-counterexample.log"
+  ],
+  "limitations": [
+    "No service, database, target or browser tests; no application acceptance promotion."
+  ],
+  "assertions": [
+    {
+      "id": "ack-only",
+      "expected": "NEEDS_ATTENTION",
+      "actual": "NEEDS_ATTENTION",
+      "result": "PASS"
+    },
+    {
+      "id": "provider-assertion-only",
+      "expected": "NEEDS_ATTENTION",
+      "actual": "COMPLETED",
+      "result": "FAIL"
+    },
+    {
+      "id": "fresh-scoped-read",
+      "expected": "COMPLETED",
+      "actual": "COMPLETED",
+      "result": "PASS"
+    },
+    {
+      "id": "stale-scoped-read",
+      "expected": "NEEDS_ATTENTION",
+      "actual": "NEEDS_ATTENTION",
+      "result": "PASS"
+    }
+  ],
+  "finding_id": "W00-F07"
+}

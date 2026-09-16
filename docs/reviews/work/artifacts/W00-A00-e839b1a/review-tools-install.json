@@ -1,0 +1,25 @@
+{
+  "kind": "WORK_REVIEW_SETUP",
+  "source_commit": "e839b1a0e9358d389c5cb728648b1590f8f7ef9e",
+  "command": [
+    "npm",
+    "install",
+    "--prefix",
+    "/workspace/scratch/6107f9291043/w00-a00-review-tools",
+    "--no-audit",
+    "--no-fund",
+    "node@24.21.0",
+    "pnpm@12.4.2"
+  ],
+  "cwd": "/workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review",
+  "started_at": "2026-09-16T09:53:30.764452+00:00",
+  "finished_at": "2026-09-16T09:54:19.826599+00:00",
+  "exit_code": 0,
+  "result": "PASS",
+  "artifact_paths": [
+    "docs/reviews/work/artifacts/W00-A00-e839b1a/review-tools-install.log"
+  ],
+  "limitations": [
+    "Isolated review tools only; no repository manifest or lockfile change; no application acceptance."
+  ]
+}

@@ -18,6 +18,7 @@
 | `apps/web/src/app/layout.tsx` and UI bootstrap entry files | Codex during A00, then Claude Code | Transfer explicitly recorded in A00 handoff before B00 starts |
 | `tests/unit/**`, `tests/integration/**`, `tests/security/**`, `tests/recovery/**`, `tests/fault-fixtures/**` | Codex | Work reviews; fixes remain with Codex unless reassigned |
 | `tests/e2e/**`, UI component tests and browser screenshots | Claude Code | No shared-data reset without named isolated profile |
+| `handoffs/TEMPLATE.md` | Work | Shared handoff format; restored unchanged from the matching approved prototype kit |
 | `handoffs/<lane>/**` | That lane | Unique task/commit filenames; other lanes read only |
 | Integration branch and release approval | Human | Small reviewed merges; no agent silently overwrites another branch |
 
@@ -53,3 +54,7 @@ Work may review the human integration checkout read-only and provide patches for
 Include `change_id`, reason, current contract version, exact affected fields/routes/enums, producer changes, consumer changes, migration effect, tests and owner. Codex is the schema writer; Work reviews meaning; Claude Code confirms binding changes. Bump the contract version and regenerate artifacts together. No second endpoint with different semantics just to avoid coordination.
 
 If blocked, state the dependency and continue an independent owned task. Never invent missing success data, remove tests, alter the product boundary or quietly take over another lane's files.
+
+## A00 review checkpoint — 2026-09-16
+
+A00 submission `4e3494db5502af821c7706cd831ace38b02e82c4` was human-integrated as `e839b1a0e9358d389c5cb728648b1590f8f7ef9e`. Its handoff explicitly transfers `apps/web/src/app/layout.tsx` and `page.tsx` to Claude Code only after Work/human accepts the shared base. That condition remains open for W00-F07 and source placement. Health/API/server/auth, manifests and configuration stay with Codex. Review evidence/reproducers under `docs/reviews/work/**` are Work-owned review artifacts; application fixes/tests remain Codex-owned.

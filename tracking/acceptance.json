@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "plan_version": "1.0",
-  "note": "Acceptance definitions, not execution evidence. Only tests for the selected P1 slice become additional readiness gates.",
+  "note": "Acceptance definitions, not execution evidence. Only tests for the selected P1 slice become additional readiness gates. W00 reviewed A00 at e839b1a0e9358d389c5cb728648b1590f8f7ef9e. Linked bootstrap subsets and pure-domain counterexamples are partial evidence, not execution of full application scenarios; all full scenarios remain NOT_RUN.",
   "tests": [
     {
       "id": "T01",
@@ -14,7 +14,11 @@
       ],
       "source": "M1 §§84–86, 163, 194",
       "status": "NOT_RUN",
-      "evidence": []
+      "evidence": [
+        "handoffs/codex/A00-e5cdef3.md",
+        "docs/reviews/work/W00_A00_REVIEW.md",
+        "docs/reviews/work/artifacts/W00-A00-e839b1a/source-and-evidence-audit.json"
+      ]
     },
     {
       "id": "T02",
@@ -241,7 +245,10 @@
       ],
       "source": "M1 §§28, 44–45, 169",
       "status": "NOT_RUN",
-      "evidence": []
+      "evidence": [
+        "docs/reviews/work/W00_A00_REVIEW.md",
+        "docs/reviews/work/artifacts/W00-A00-e839b1a/F07-counterexample.json"
+      ]
     },
     {
       "id": "T19",
@@ -282,7 +289,10 @@
       ],
       "source": "M1 §§44–49, 104, 185",
       "status": "NOT_RUN",
-      "evidence": []
+      "evidence": [
+        "docs/reviews/work/W00_A00_REVIEW.md",
+        "docs/reviews/work/artifacts/W00-A00-e839b1a/F07-counterexample.json"
+      ]
     },
     {
       "id": "T22",
@@ -375,7 +385,11 @@
       ],
       "source": "M1 §§122, 128, 178–179",
       "status": "NOT_RUN",
-      "evidence": []
+      "evidence": [
+        "handoffs/codex/A00-e5cdef3.md",
+        "docs/reviews/work/W00_A00_REVIEW.md",
+        "docs/reviews/work/artifacts/W00-A00-e839b1a/source-and-evidence-audit.json"
+      ]
     },
     {
       "id": "T29",

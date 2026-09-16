@@ -1,0 +1,11 @@
+✔ current and legitimately progressed/BLOCKED tracking remain valid (8.344139ms)
+✔ application PASS cannot be manufactured from a document or bootstrap subset (7.141714ms)
+✔ unknown dependencies, cycles, invalid statuses, missing evidence, and view drift fail (6.210225ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.34086

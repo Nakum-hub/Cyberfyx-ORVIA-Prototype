@@ -1,0 +1,22 @@
+$ tsx packages/contracts/src/generate.ts --check
+node:net:2306
+      const error = new UVExceptionWithHostPort(rval, 'listen', address, port);
+                    ^
+
+Error: listen EPERM: operation not permitted /tmp/tsx-0/41.pipe
+    at Server.setupListenHandle [as _listen2] (node:net:2306:21)
+    at listenInCluster (node:net:2437:12)
+    at Server.listen (node:net:2579:5)
+    at file:///workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review/node_modules/.pnpm/tsx@4.23.13/node_modules/tsx/dist/cli.mjs:53:31472
+    at new Promise (<anonymous>)
+    at createIpcServer (file:///workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review/node_modules/.pnpm/tsx@4.23.13/node_modules/tsx/dist/cli.mjs:53:31450)
+    at async file:///workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review/node_modules/.pnpm/tsx@4.23.13/node_modules/tsx/dist/cli.mjs:55:542 {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '/tmp/tsx-0/41.pipe',
+  port: -1
+}
+
+Node.js v24.21.0
+[ELIFECYCLE] Command failed with exit code 1.

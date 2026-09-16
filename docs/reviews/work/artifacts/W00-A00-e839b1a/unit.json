@@ -1,0 +1,30 @@
+{
+  "kind": "WORK_REVIEW_CHECK",
+  "coverage": "ENGINEERING_ONLY",
+  "task_id": "W00",
+  "test_ids": [],
+  "source_commit": "e839b1a0e9358d389c5cb728648b1590f8f7ef9e",
+  "contract_version": "0.2.0",
+  "profile": "work-static-review-no-services",
+  "fixture_id": "repository-unit-and-review-fixtures",
+  "command": [
+    "/workspace/scratch/6107f9291043/w00-a00-review-tools/node_modules/node/bin/node",
+    "/workspace/scratch/6107f9291043/w00-a00-review-tools/node_modules/pnpm/bin/pnpm.mjs",
+    "test"
+  ],
+  "cwd": "/workspace/scratch/6107f9291043/cyberfyx-orvia-work-a00-review",
+  "started_at": "2026-09-16T09:57:34.540671+00:00",
+  "finished_at": "2026-09-16T09:57:34.706575+00:00",
+  "exit_code": 1,
+  "result": "FAIL",
+  "runtime": {
+    "node": "24.21.0",
+    "pnpm": "12.4.2"
+  },
+  "artifact_paths": [
+    "docs/reviews/work/artifacts/W00-A00-e839b1a/unit.log"
+  ],
+  "limitations": [
+    "No service, database, target or browser tests; no application acceptance promotion."
+  ]
+}
