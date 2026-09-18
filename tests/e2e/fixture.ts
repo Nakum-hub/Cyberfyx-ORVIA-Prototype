@@ -1,4 +1,4 @@
-import { test as base, expect, type Page, type BrowserContext, type TestInfo } from '@playwright/test';
+import { test as base, expect, type Page, type TestInfo } from '@playwright/test';
 import { spawn, execFile, type ChildProcess } from 'node:child_process';
 import { once } from 'node:events';
 import { promisify } from 'node:util';
@@ -22,7 +22,8 @@ export class BrowserHarness extends HttpFixture {
   publicDirectory=resolve('handoffs/codex/browser',`B06-playwright-${process.env.ORVIA_BROWSER_RUN_ID}`);
   privateDirectory=resolve('.local/browser-evidence',process.env.ORVIA_BROWSER_RUN_ID!);
   constructor(){super();const login=super.login.bind(this);const clients=new Map<string,ReturnType<HttpFixture['browser']>>();this.login=async name=>{if(!clients.has(name)){await this.authWindow();clients.set(name,await login(name));}return clients.get(name)!;};}
-  async authWindow(){const n=Number((await this.db.query("SELECT count(*) n FROM staff_auth.auth_audit WHERE created_at>clock_timestamp()-interval '61 seconds' AND operation IN ('/sign-in/email','/two-factor/verify-totp')")).rows[0].n);if(n>=8)await waitForAuthWindow(this.db);}
+  // Same per-bucket measurement as guardAuthWindow, using the pool already held.
+  async authWindow(){const r=(await this.db.query("SELECT count(*) FILTER (WHERE operation='/sign-in/email') sign_in, count(*) FILTER (WHERE operation LIKE '/two-factor/%') two_factor FROM staff_auth.auth_audit WHERE created_at>clock_timestamp()-interval '61 seconds'")).rows[0];if(Number(r.sign_in)>=6||Number(r.two_factor)>=6)await waitForAuthWindow(this.db);}
   async start(){
     if(this.profile.profile!=='rehearsal')throw new Error('Exclusive rehearsal profile required');
     const identity=(await this.db.query('SELECT installation_id,profile FROM bootstrap_profile WHERE singleton=1')).rows[0];
@@ -45,7 +46,20 @@ export class BrowserHarness extends HttpFixture {
   async screenshot(page:Page,name:string){await page.screenshot({path:resolve(this.publicDirectory,name+'.png'),fullPage:false});}
 }
 
-export const test=base.extend<{networkAudit:void},{h:BrowserHarness}>({
+export type BrowserLogEntry={kind:'PAGE_ERROR'|'CONSOLE_ERROR'|'REACT_WARNING'|'HTTP_STATUS'|'WARNING';text:string;url:string};
+/** Marks an error this test deliberately provokes, so it is evidence rather than a failure. */
+export function expectPageError(info:TestInfo,fragment:string){info.annotations.push({type:'expect-page-error',description:fragment});}
+const REACT_DEFECT=/hydrat|did not match|Text content does not match|validateDOMNesting|Maximum update depth|Each child in a list|Cannot update a component/i;
+// A deliberate 401/403/404/503 in a test surfaces as a browser resource log, not
+// a JavaScript fault. Those are recorded with their status but never fail a run:
+// the test's own assertions decide whether the status was correct.
+const RESOURCE_LOG=/Failed to load resource/i;
+function classify(type:string,text:string):BrowserLogEntry['kind']{
+  if(RESOURCE_LOG.test(text))return 'HTTP_STATUS';
+  if(REACT_DEFECT.test(text))return 'REACT_WARNING';
+  return type==='error'?'CONSOLE_ERROR':'WARNING';
+}
+export const test=base.extend<{networkAudit:void;browserAudit:void},{h:BrowserHarness}>({
   h:[async({browserName},use)=>{
     if(browserName!=='chromium')throw new Error('This evidence suite pins Chromium');
     const h=new BrowserHarness();const lock=await h.db.connect();let heartbeat:ReturnType<typeof setInterval>|undefined;
@@ -66,6 +80,37 @@ export const test=base.extend<{networkAudit:void},{h:BrowserHarness}>({
     context.on('request',request=>{const url=new URL(request.url());requests.push({origin:url.origin,path:url.pathname,method:request.method()});});
     await use();writeFileSync(resolve(h.publicDirectory,`network-${info.testId}.json`),JSON.stringify({test:info.title,requests,scope:'This Playwright context only; not host-wide egress.'},null,2));
     expect(requests.filter(r=>r.origin!==h.config.origin)).toEqual([]);
+  },{auto:true}],
+  /**
+   * Browser health as published evidence. Every page in the context is watched,
+   * including pages opened later, and the result is written next to the network
+   * record and summarised into results.json by the reporter. An uncaught page
+   * error or a React correctness warning fails the run: qualification may not
+   * pass while the interface is throwing.
+   */
+  browserAudit:[async({context,h},use,info)=>{
+    const entries:BrowserLogEntry[]=[];
+    const watch=(page:Page)=>{
+      page.on('pageerror',error=>entries.push({kind:'PAGE_ERROR',text:`${error.name}: ${error.message}`.slice(0,500),url:page.url()}));
+      page.on('console',message=>{const type=message.type();if(type!=='error'&&type!=='warning')return;
+        entries.push({kind:classify(type,message.text()),text:message.text().slice(0,500),url:page.url()});});
+    };
+    context.on('page',watch);context.pages().forEach(watch);
+    await use();
+    const expected=info.annotations.filter(a=>a.type==='expect-page-error').map(a=>a.description??'');
+    const isExpected=(entry:BrowserLogEntry)=>expected.some(fragment=>fragment&&entry.text.includes(fragment));
+    const failing=entries.filter(e=>(e.kind==='PAGE_ERROR'||e.kind==='CONSOLE_ERROR'||e.kind==='REACT_WARNING')&&!isExpected(e));
+    const matched=entries.filter(isExpected);
+    writeFileSync(resolve(h.publicDirectory,`console-${info.testId}.json`),JSON.stringify({test:info.title,expected,
+      // Every entry carries whether this test deliberately provoked it, so a
+      // reader of the published evidence can never mistake the audit's own
+      // capture probe for a real fault.
+      entries:entries.map(entry=>({...entry,deliberate:isExpected(entry)})),
+      counts:Object.fromEntries(['PAGE_ERROR','CONSOLE_ERROR','REACT_WARNING','HTTP_STATUS','WARNING'].map(k=>[k,entries.filter(e=>e.kind===k).length])),
+      deliberate_errors_captured:matched.length,unexpected:failing.length,
+      scope:'Console and page errors for this Playwright context only. Deliberate HTTP 401/403/404/503 responses are recorded as HTTP_STATUS and do not fail a run.'},null,2));
+    if(expected.length)expect(matched.length,'a deliberately provoked page error must be captured by this audit').toBeGreaterThan(0);
+    expect(failing,'uncaught page errors and React correctness warnings must not occur during qualification').toEqual([]);
   },{auto:true}],
 });
 export {expect};
@@ -107,4 +152,3 @@ export async function withdrawUi(page:Page,purpose:{id:string;name:string}){
   const card=await choicePanel(page,purpose);await card.getByRole('button',{name:'Withdraw consent',exact:true}).click();const dialog=page.getByRole('dialog',{name:'Withdraw consent'});await expect(dialog.getByRole('checkbox')).toHaveCount(0);
   const response=page.waitForResponse(r=>r.url().endsWith(`/consents/${purpose.id}/withdraw`));await dialog.getByRole('button',{name:'Withdraw consent',exact:true}).click();const result=await response;expect(result.status()).toBe(202);return result.json();
 }
-export async function newContextPage(context:BrowserContext,info:TestInfo){const page=await context.newPage();page.on('pageerror',()=>info.annotations.push({type:'browser-page-error',description:'See protected raw trace'}));return page;}
